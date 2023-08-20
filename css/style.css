@@ -1,0 +1,71 @@
+body {
+    /* margin: 0;
+    padding: 0; */
+  }
+
+/* nav */
+
+.box {
+    width: 100%;
+    /* background-color: lightpink; */
+}
+
+#box1 {
+    height: 100vh;
+    /* background-color: lightgreen; */
+}
+
+#box2 {
+    background-color: lightyellow;
+    padding-top: 200px;
+}
+
+#box3 {
+    padding-top: 200px;
+    /* background-color: lightblue; */
+}
+#box4 {
+    padding-top: 250px;
+    /* background-color: lightblue; */
+    height: 100vh;
+}
+#box5 {
+   height: 100vh;
+}
+
+/* 隱藏初始導航欄 */
+.navbar {
+    display: none;
+    /* 添加您的導航欄樣式 */
+
+}
+
+/* nav end */
+
+
+/* carousel */
+
+.h-20vh {
+    height: 20vh;
+}
+
+.carousel-item {
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* width: 100%; */
+    overflow: hidden;
+    /* 隐藏超出容器的部分 */
+    
+}
+
+.carousel-item > img {
+    
+    height: 100vh;
+    /* max-width: 100%; */
+            max-height: 100%;
+    object-fit: cover;
+    /* 保持原比例并适应容器 */
+}
+
+/* carousel end */

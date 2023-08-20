@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <title>滾動顯示導航欄</title>
+
+    <style>
+        /* 隱藏初始導航欄 */
+        .navbar {
+            display: none;
+        /* 添加您的導航欄樣式 */
+        
+    }
+    
+    .content {
+        /* 添加內容樣式，這里是示例 */
+        height: 100vh;
+    }
+    </style>
+    
+
+</head>
+<body>
+    <nav class="navbar" id="navbar" style="background-color: greenyellow; height: 10vh; position: static;">
+        <!-- 導航欄內容 -->
+    </nav>
+    
+    <div class="content" style="background-color: red ;">
+        <!-- 第一張圖片內容 -->
+    </div>
+
+    <div class="content" style="background-color: blue;">
+        <!-- 第二張圖片內容 -->
+        </div>
+        
+        <!-- 其他內容 -->
+        <script>
+    window.addEventListener('scroll', function() {
+       let navbar = document.getElementById('navbar');
+        let secondImage = document.querySelector('.content:nth-child(2)'); // 第二張圖片的內容
+    console.log('navber',navbar)
+    console.log('secondImage',secondImage)
+
+
+        if (secondImage.getBoundingClientRect().top <= 0) {
+            navbar.style.display = 'block';
+        } else {
+            navbar.style.display = 'none';
+        }
+    });
+    
+
+    </script>
+</body>
+</html>

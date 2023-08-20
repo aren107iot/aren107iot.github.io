@@ -1,12 +1,588 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>8/18一頁式主題</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
 </head>
+
 <body>
-    
+    <!-- bg-dark navbar-dark 黑底白字 -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark navbar-dark fixed-top" id="navbar">
+        <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark navbar-dark sticky-bottom"> -->
+        <div class="container-fluid">
+            <!-- 品牌名稱 -->
+            <a class="navbar-brand" href="#">賴媽媽點心工作紡</a>
+
+            <!-- 縮小 三條線btn -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- 實際內容 -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#box1" data-pagename='home'>每日小點心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#fix-2" data-pagename='feature'>小點心心得</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#box3" data-pagename='price'>天氣占卜</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#box4" data-pagename='disable'>聯絡賴媽媽</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid p-0">
+        <div class="box" id="box1">
+            <p id="myP"></p>
+
+            <!--  -->
+            <div class="container-fluid p-0">
+                <div id="carouselExampleIndicators888" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators888" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators888" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators888" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators888" data-bs-slide-to="3"
+                            aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators888" data-bs-slide-to="4"
+                            aria-label="Slide 5"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="./image/01.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./image/02.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./image/03.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./image/04.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./image/08.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators888"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators888"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <!--  -->
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+
+    <script>
+        let page = 'home';
+        const homeA = document.getElementById('homeA');
+        const allA = document.querySelectorAll('.nav-item > a');
+        const myP = document.getElementById('myP');
+        allA.forEach(function (value) {
+            // console.log(value);
+            value.addEventListener('click', function () {
+                // console.log('this',this);
+                let pagename = this.getAttribute('data-pagename');
+                console.log('pagename', pagename);
+                myP.innerText = pagename;
+
+                // 所有a tag 只有nav-link
+                allA.forEach(element => {
+                    element.setAttribute('class', 'nav-link');
+                });
+
+                this.setAttribute('class', 'nav-link active')
+            })
+        });
+
+        // homeA.addEventListener('click',function(){
+        //     c
+
+        // homeA.addEventListener('click',function(){
+        //     console.log('home ok');
+        // })
+
+
+        //nav設隱藏 下滑後顯示
+        window.addEventListener('scroll', function () {
+            let navbar = document.getElementById('navbar');
+            let secondImage = document.querySelector('.container-fluid:nth-child(2)'); // 第二張圖片的內容
+            console.log('navber', navbar)
+            console.log('secondImage', secondImage)
+
+            if (secondImage.getBoundingClientRect().top <= 0) {
+                navbar.style.display = 'block';
+            } else {
+                navbar.style.display = 'none';
+            }
+        });
+
+    </script>
+
+
+    <div id="fix-2"></div>
+    <!-- <br> -->
+
+
+
+    <!--  -->
+    <div class="col">
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="height: 20vh;">
+                    <img src="https://picsum.photos/id/63/1200/600" class="d-block w-100 h-20vh"
+                        alt="https://picsum.photos/id/42/1200/600">
+                </div>
+                <div class="carousel-item" style="height: 20vh;">
+                    <img src="https://picsum.photos/id/30/1200/600" class="d-block w-100 h-20vh"
+                        alt="https://picsum.photos/id/42/1200/600">
+                </div>
+                <div class="carousel-item" style="height: 20vh;">
+                    <img src="https://picsum.photos/id/56/1200/600" class="d-block w-100 h-20vh"
+                        alt="https://picsum.photos/id/42/1200/600">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button"
+                data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button"
+                data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <!--  -->
+    <div class="container-fluid p-0">
+        <div class="box" id="box2">
+
+
+            <h2 style="text-align: center;">~ 小點心卡片 ~</h2>
+<br>
+<br>
+
+            <div class="container-fluid mt-5">
+                <div class="row">
+                    <div class="col-sm-6 col-lg-3 mb-5">
+                        <!-- card -->
+                        <div class="card mx-auto shadow" style="width: 300px">
+                            <img src="./image/06.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">要讓鳳梨酥酥脆多層，記得將鳳梨餡包得緊實。選用熟透的鳳梨和經典的糖醬，風味更佳。</p>
+                            </div>
+                        </div>
+                        <!-- card-end -->
+                    </div>
+                    <div class="col-sm-6 col-lg-3 mb-5">
+                        <!-- card -->
+                        <div class="card mx-auto shadow" style="width: 300px">
+                            <img src="./image/05.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">烤蛋黃酥時，溫度和時間掌握至關重要。低火慢烤，讓酥皮鬆脆，內餡濃郁，切割時保持整齊。</p>
+                            </div>
+                        </div>
+                        <!-- card-end -->
+                    </div>
+                    <div class="col-sm-6 col-lg-3 mb-5">
+                        <!-- card -->
+                        <div class="card mx-auto shadow" style="width: 300px">
+                            <img src="./image/03.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">在線上平台銷售點心需要良好的攝影技巧。我學會了如何拍攝美食照片，選擇角度和燈光，以使點心看起來令人垂涎。</p>
+                            </div>
+                        </div>
+                        <!-- card-end -->
+                    </div>
+                    <div class="col-sm-6 col-lg-3 mb-5">
+                        <!-- card -->
+                        <div class="card mx-auto shadow" style="width: 300px">
+                            <img src="./image/14.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">煮時加入少許椰漿，能提升口感，切忌芋頭太濕。</p>
+                            </div>
+                        </div>
+                        <!-- card-end -->
+                    </div>
+                    <div class="col-sm-6 col-lg-3 mb-5">
+                        <!-- card -->
+                        <div class="card mx-auto shadow" style="width: 300px">
+                            <img src="./image/07.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">製作吸引人的包裝是一門藝術。我學會了將美食以視覺方式呈現，選擇適合的顏色和圖案，以吸引客人的目光。好的包裝可以增加點心的銷售。</p>
+                            </div>
+                        </div>
+                        <!-- card-end -->
+                    </div>
+                    <div class="col-sm-6 col-lg-3 mb-5">
+                        <!-- card -->
+                        <div class="card mx-auto shadow" style="width: 300px">
+                            <img src="./image/09.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">煮芋頭時，加入少許椰漿，能提升口感。切忌芋頭太濕，酥皮容易變軟。</p>
+                            </div>
+                        </div>
+                        <!-- card-end -->
+                    </div>
+                    <div class="col-sm-6 col-lg-3 mb-5">
+                        <!-- card -->
+                        <div class="card mx-auto shadow" style="width: 300px">
+                            <img src="./image/10.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">打發蛋糕麵糊時，輕手搅拌，避免過度攪拌。烤箱預熱，烘烤均勻，蛋糕鬆軟細緻。</p>
+                            </div>
+                        </div>
+                        <!-- card-end -->
+                    </div>
+                    <div class="col-sm-6 col-lg-3 mb-5">
+                        <!-- card -->
+                        <div class="card mx-auto shadow" style="width: 300px">
+                            <img src="./image/11.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">泡糯米前，清洗糯米至水變清。蒸糯米時，記得掌握水量，火候恰當，可增添香氣。</p>
+                            </div>
+                        </div>
+                        <!-- card-end -->
+                    </div>
+                    <div class="col-sm-6 col-lg-3 mb-5">
+                        <!-- card -->
+                        <div class="card mx-auto shadow" style="width: 300px">
+                            <img src="./image/12.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">用酥皮包覆蘋果餡料前，灑上檸檬汁以提亮口感。切割前冷卻，可避免內餡溢出。</p>
+                            </div>
+                        </div>
+                        <!-- card-end -->
+                    </div>
+                    <div class="col-sm-6 col-lg-3 mb-5">
+                        <!-- card -->
+                        <div class="card mx-auto shadow" style="width: 300px">
+                            <img src="./image/13.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">烤塔皮前，可在底部刷上巧克力，防止塔皮變潮。新鮮草莓切片擺放，提升視覺效果。</p>
+                            </div>
+                        </div>
+                        <!-- card-end -->
+                    </div>
+                    <div class="col-sm-6 col-lg-3 mb-5">
+                        <!-- card -->
+                        <div class="card mx-auto shadow" style="width: 300px">
+                            <img src="./image/15.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">薄餅麵糊要均勻，鍋底潤滑不粘。夾入喜愛的餡料，如巧克力、草莓或榛子醬，讓口味多元</p>
+                            </div>
+                        </div>
+                        <!-- card-end -->
+                    </div>
+                    <div class="col-sm-6 col-lg-3 mb-5">
+                        <!-- card -->
+                        <div class="card mx-auto shadow" style="width: 300px">
+                            <img src="./image/08.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">舉辦促銷活動可以吸引更多客人。提供特惠價格，並使用社交媒體和網站宣傳。活動能增加銷售和客戶忠誠度。</p>
+                            </div>
+                        </div>
+                        <!-- card-end -->
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <!--  -->
+            <!-- <div class="container-fluid p-0 mt-5">
+                <div class="row">
+                    <div class="col-4">
+                        <div id="carouselExampleIndicators444" class="carousel slide">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators444"
+                                    data-bs-slide-to="0" class="active" aria-current="true"
+                                    aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators444"
+                                    data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators444"
+                                    data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="https://picsum.photos/id/42/1200/600" class="d-block w-100 h-20vh"
+                                        alt="https://picsum.photos/id/42/1200/600">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://picsum.photos/id/42/1200/600" class="d-block w-100 h-20vh"
+                                        alt="https://picsum.photos/id/42/1200/600">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://picsum.photos/id/42/1200/600" class="d-block w-100 h-20vh"
+                                        alt="https://picsum.photos/id/42/1200/600">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button"
+                                data-bs-target="#carouselExampleIndicators444" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button"
+                                data-bs-target="#carouselExampleIndicators444" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div> -->
+            <!--  -->
+
+        </div>
+    </div>
+
+
+    <div class="container-fluid p-0 mt-5">
+        <div class="box" id="box3">
+
+            <h3 class="text-center">每日天氣占卜</h3>
+<br>
+<br>
+<br>
+<br>
+            <hr>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="locationBtn btn btn-outline-primary" id=""
+                            data-location="新北市">???</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="locationBtn btn btn-outline-success" id=""
+                            data-location="臺中市">???</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="locationBtn btn btn-outline-danger" id=""
+                            data-location="高雄市">???</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-outline-warning" onclick="window.print()">列印結果</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="locationBtn btn btn-outline-info" id="all"
+                            data-location="all">所有預報</button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="container-fluid mt-5 text-center">
+                <div class="row">
+                    <div class="col">
+                        地點
+                    </div>
+                    <div class="col">
+                        早上
+                    </div>
+                    <div class="col">
+                        下午
+                    </div>
+                    <div class="col">
+                        晚上
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                $(document).ready(function () {
+                    let url = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-AE992CCB-CAEE-4B0D-BBDA-0796C52D8325'
+                    console.log('url', url);
+
+                    function getValue(locationName) {
+                        console.log('locationName', locationName);
+
+                        $.ajax({
+                            type: "get",
+                            url: url,
+                            // data: "data",
+                            dataType: "json",
+                            success: function (res) {
+                                console.log('res', res);
+                                // let data = res['records']['location'];
+                                // [''] . -> 程式語言都是這樣取下一層資料
+                                let data = res['records']['location'];
+                                // let data = res.records.location;
+                                // let data = res->records->location;
+                                console.log('data', data);
+
+                                let content = '';
+
+
+                                data.forEach((value, key) => {
+                                    let locationNameByData = value.locationName;
+                                    //  新北市 == 新北市 資料只抓新北市
+
+                                    if (locationName == 'all') {
+
+                                    } else {
+                                        if (locationName != locationNameByData) {
+                                            return;
+                                        }
+                                    }
+
+                                    console.log(key);
+                                    console.log(value.locationName);
+                                    let time12 = `${value.weatherElement[2].time[0].parameter.parameterName} - ${value.weatherElement[4].time[0].parameter.parameterName}`;
+                                    let time24 = `${value.weatherElement[2].time[1].parameter.parameterName} - ${value.weatherElement[4].time[1].parameter.parameterName}`;
+                                    let time36 = `${value.weatherElement[2].time[2].parameter.parameterName} - ${value.weatherElement[4].time[2].parameter.parameterName}`;
+                                    let img12 = `${value.weatherElement[0].time[0].parameter.parameterValue}`;
+                                    let img24 = `${value.weatherElement[0].time[1].parameter.parameterValue}`;
+                                    let img36 = `${value.weatherElement[0].time[2].parameter.parameterValue}`;
+                                    let text12 = `${value.weatherElement[0].time[0].parameter.parameterName}`;
+                                    let text24 = `${value.weatherElement[0].time[0].parameter.parameterName}`;
+                                    let text36 = `${value.weatherElement[0].time[0].parameter.parameterName}`;
+
+                                    content = content + `  
+                            <hr>                          
+                            <div class="row mt-3">
+                                
+                                <div class="col pt-4">
+                                    ${value.locationName}
+                                </div>
+                                <div class="col">
+                                    ${time12} 
+                                    <img src="./day/${img12}.svg" alt="${text12}" title="${text12}">
+                                </div>
+                                <div class="col">
+                                    ${time24} 
+                                    <img src="./day/${img24}.svg" alt="${text24}" title="${text24}">
+                                </div>
+                                <div class="col">
+                                    ${time36} 
+                                    <img src="./day/${img36}.svg" alt="${text36}" title="${text36}">
+                                </div>
+                            </div>                            
+                        `;
+                                });
+                                myContainer.append(content);
+
+                            }
+                        });
+                    }
+
+                    const myContainer = $('#myContainer');
+                    const locationBtn = $('.locationBtn');
+
+
+                    locationBtn.click(function () {
+                        let dataLocation = $(this).attr('data-location');
+                        console.log('dataLocation', dataLocation);
+                        myContainer.html('');
+                        getValue(dataLocation);
+                        let btn = $(this)
+                        if (dataLocation == 'all') {
+                        } else {
+                            console.log(this);
+                            btn.text(dataLocation)
+                        }
+                    });
+
+                });
+
+            </script>
+
+            <div class="container-fluid text-center" id="myContainer">
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container mt-5">
+        <div class="box" id="box4">
+
+            <h3 style="text-align: center;">聯絡賴媽媽</h3>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">你的Email</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="email@email.com">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">想說的話</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    placeholder="請不要發送惡意訊息"></textarea>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-primary">寄出e-mail</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="box" id="box5">
+
+
+
+        </div>
+    </div>
+
+
+
+
 </body>
+
 </html>
